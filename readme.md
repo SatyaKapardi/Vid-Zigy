@@ -1,0 +1,4 @@
+This server sets up two routes: /upload and /video/:filename.
+The /upload route handles video uploads using the multer middleware. When a video is uploaded, it is stored in the uploads/ directory and its filename is returned in the response.
+The /video/:filename route streams the video file to the client. It first checks if the client has requested a specific byte range of the file using the Range header. If so, it streams the requested range; otherwise, it streams the entire file. The Content-Range, Accept-Ranges, Content-Length, and Content-Type headers are set appropriately for the range requested.
+To download the video, the client can simply use the URL http://localhost:3000/video/:filename, where :filename is the filename returned from the /upload route.
